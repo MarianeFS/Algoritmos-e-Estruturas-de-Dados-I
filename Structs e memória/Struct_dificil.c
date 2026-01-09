@@ -1,0 +1,4 @@
+/*
+Crie uma struct que contenha um array de structs dentro dela. Calcule o tamanho total ocupado
+usando sizeof e explique onde o compilador inseriu bytes de alinhamento.
+*/
