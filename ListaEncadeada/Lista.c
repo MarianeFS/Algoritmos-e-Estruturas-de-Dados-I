@@ -62,6 +62,18 @@ void imprimir(Lista *l) {
     printf("NULL\n");
 }
 
+void destruirLista(Lista *l) {
+    No *atual = l->inicio;
+    while (atual != NULL) {
+        No *proximo = atual->prox; // Salva o endereço do próximo antes de apagar o atual
+        free(atual);               // Libera a memória do nó atual
+        atual = proximo;           // Vai para o próximo
+    }
+    l->inicio = NULL;
+    l->tam = 0;
+    printf("Memória liberada com sucesso!\n");
+}
+
 int main () {
     Lista l;
 
@@ -77,6 +89,7 @@ int main () {
 
     imprimir(&l);
 
-    
+    destruirLista(&l);
+
     return 0;
 }
