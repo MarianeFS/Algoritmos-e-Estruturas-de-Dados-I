@@ -62,12 +62,28 @@ void imprimir(Lista *l) {
     printf("NULL\n");
 }
 
+void removerLista (Lista *l, int n){
+    No *aux = l->inicio, *ant = NULL; // 'aux' percorre a lista, 'ant' guarda o elemento anterior
+    while(aux != NULL && aux->dados != n) { // Busca o elemento (aux->dados)
+        ant = aux;
+        aux = aux->prox;
+    }
+    if(aux == NULL) return; // Elemento não encontrado
+    if (ant == NULL) { // O elemento é o primeiro da lista (ant ainda é NULL)
+        l->inicio = aux->prox;
+    } else { // O elemento está no meio ou no fim
+        ant->prox = aux->prox;
+    }
+    free(aux);
+    l->tam--;
+}
+
 void destruirLista(Lista *l) {
-    No *atual = l->inicio;
+    No *atual = l->inicio; // Variável que aponta para o início da lista
     while (atual != NULL) {
-        No *proximo = atual->prox; // Salva o endereço do próximo antes de apagar o atual
+        No *prox = atual->prox; // Salva o endereço do próximo antes de apagar o atual
         free(atual);               // Libera a memória do nó atual
-        atual = proximo;           // Vai para o próximo
+        atual = prox;           // Vai para o próximo
     }
     l->inicio = NULL;
     l->tam = 0;
@@ -86,6 +102,8 @@ int main () {
     insereMeio(&l, 20, 10);
 
     insereInicio(&l, 5);
+
+    removerLista(&l, 30);
 
     imprimir(&l);
 

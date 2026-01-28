@@ -21,6 +21,8 @@ void insereMeio (Lista *l, int n, int pivo);
 
 void imprimir(Lista *l);
 
+void removerLista (Lista *l, int n);
+
 void destruirLista(Lista *l);
 
 #endif
